@@ -1,5 +1,4 @@
 let canvas;
-let ctx;
 let world;
 let keyboard = new Keyboard();
 
@@ -17,7 +16,7 @@ window.addEventListener('keydown', (e) => {
     if (e.keyCode == 37) {
         keyboard.LEFT = true;
     }
-    if (e.keyCode == 38) {
+    if (e.keyCode == 38) { 
         keyboard.UP = true;
     }
     if (e.keyCode == 40) {
