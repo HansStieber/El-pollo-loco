@@ -41,6 +41,14 @@ class MovableObject {
         }
     }
 
+    // Bessere Formel zur Kollisionsberechnung (Genauer)
+    isColliding(obj) {
+        return this.x + this.width > obj.x &&
+        this.y + this.height > obj.y &&
+        this.x < obj.x &&
+        thix.y < obj.y + obj.height;
+    }
+
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
