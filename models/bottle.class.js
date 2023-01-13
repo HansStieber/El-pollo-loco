@@ -1,4 +1,4 @@
-class Bottle extends StaticObject {
+class Bottle extends MovableObject {
     y = 340;
     height = 80;
     width = 60;
