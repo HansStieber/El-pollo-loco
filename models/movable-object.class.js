@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObject {
     x = 120;
     y = 40;
     img;
@@ -9,6 +9,7 @@ class MovableObject {
     speedY = 0;
     acceleration = 2;
     energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -53,7 +54,15 @@ class MovableObject {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
+        timepassed = timepassed / 1000; //in s
+        return timepassed < 0.5;
     }
 
     isDead() {
