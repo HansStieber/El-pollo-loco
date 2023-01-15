@@ -1,11 +1,14 @@
 class World {
     canvas;
     keyboard;
-
     character = new Character();
     level = level1;
     ctx;
     camera_x = 0;
+    statusBarHealth = new StatusbarHealth();
+    statusBarBottles = new StatusbarBottles();
+    statusBarCoins = new StatusbarCoins();
+    statusBarEndboss = new StatusbarEndboss();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,12 +27,19 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+        
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBarHealth);
+        this.addToMap(this.statusBarBottles);
+        this.addToMap(this.statusBarCoins);
+        this.addToMap(this.statusBarEndboss);
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
@@ -46,7 +56,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     this.character.hit();
-                    console.log('collision with', this.character.energy);
+                    this.statusBarHealth.setPercentage(this.character.energy);
                 }
             });
         }, 200);
