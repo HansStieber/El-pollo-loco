@@ -8,6 +8,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
+    energy = 100;
 
     applyGravity() {
         setInterval(() => {
@@ -41,12 +42,22 @@ class MovableObject {
         }
     }
 
-    // Bessere Formel zur Kollisionsberechnung (Genauer)
     isColliding(obj) {
         return this.x + this.width > obj.x &&
-        this.y + this.height > obj.y &&
-        this.x < obj.x &&
-        thix.y < obj.y + obj.height;
+            this.y + this.height > obj.y &&
+            this.x < obj.x + obj.width &&
+            this.y < obj.y + obj.height;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
 
     loadImages(arr) {
