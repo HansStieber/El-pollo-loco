@@ -1,3 +1,7 @@
+.d-none {
+    display: none;
+}
+
 body {
     display: flex;
     align-items: center;
@@ -26,6 +30,22 @@ h1 {
 
 .screen {
     position: relative;
+}
+
+.explanation-container {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 10%;
+    font-size: 20px;
+}
+
+.explanation-inner-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .startscreen {
@@ -72,6 +92,11 @@ canvas {
     h1 {
         font-size: 32px;
         margin-bottom: 10px;
+    }
+
+    .play-button {
+        top: 5px;
+        width: 80px;
     }
 }
 
