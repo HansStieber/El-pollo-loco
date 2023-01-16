@@ -15,7 +15,6 @@ h1 {
     margin-top: 0;
     margin-bottom: 20px;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -25,12 +24,32 @@ h1 {
     align-items: center;
 }
 
+.screen {
+    position: relative;
+}
+
 .startscreen {
     position: absolute;
-    width: 720px;
-    height: 480px;
-    background-image: url('img/9_intro_outro_screens/start/startscreen_2.png');
-    background-size: 720px 480px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.play-button {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 100px;
+    transition: all 125ms ease-in-out;
+    filter: invert(1);
+}
+
+.play-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 canvas {
@@ -39,7 +58,7 @@ canvas {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.d-none {
+.turn-display-container {
     display: none;
 }
 
@@ -53,6 +72,16 @@ canvas {
     h1 {
         font-size: 32px;
         margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .content {
+    display: none;
+    }
+
+    .turn-display-container {
+        display: unset;
     }
 }
 
