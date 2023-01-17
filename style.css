@@ -48,6 +48,30 @@ h1 {
     align-items: center;
 }
 
+.control-panel-move {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.control-panel-move img {
+    width: 50px;
+    margin-left: 40px;
+}
+
+.control-panel-action {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.control-panel-action img {
+    width: 50px;
+    margin-right: 40px;
+}
+
 .startscreen {
     position: absolute;
     top: 0;
@@ -78,6 +102,9 @@ h1 {
     top: 10px;
     right: 10px;
     width: 20px;
+    background-color: gold;
+    border: 5px solid gold;
+    border-radius: 5px;
 }
 
 .speaker-icon:hover {
@@ -91,6 +118,9 @@ h1 {
     top: 10px;
     left: 10px;
     width: 20px;
+    background-color: gold;
+    border: 5px solid gold;
+    border-radius: 5px;
 }
 
 .exit-icon:hover {
@@ -109,6 +139,12 @@ canvas {
 }
 
 /*----------Smartphones----------*/
+
+@media only screen and (max-width: 992px) {
+    .control-panel-action, .control-panel-move {
+        display: unset;
+    }
+}
 
 @media only screen and (max-width: 720px) {
     canvas {
