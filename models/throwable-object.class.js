@@ -7,7 +7,7 @@ class ThrowableObject extends MovableObject {
         this.width = 80;
         this.height = 80;
 
-        if (keyboard.LEFT == true) {
+        if (world.character.otherDirection) {
             this.throwLeft();
         } else {
             this.throwRight();

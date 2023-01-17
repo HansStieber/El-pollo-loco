@@ -9,7 +9,7 @@ class World {
     statusBarBottles = new StatusbarBottles();
     statusBarCoins = new StatusbarCoins();
     statusBarEndboss = new StatusbarEndboss();
-    throwableObjects = [new ThrowableObject()];
+    throwableObjects = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -88,7 +88,6 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

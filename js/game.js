@@ -1,10 +1,16 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let muteAudio = false;
+soundtrack = new Audio('audio/soundtrack.mp3');
+soundtrack.volume = 0.3
+soundtrack.loop = true;
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+
+    this.soundtrack.play();
 
     hideStartscreen();
     setMobileBtns();
@@ -15,6 +21,24 @@ function hideStartscreen() {
     document.getElementById('play-button').classList.add('d-none');
     document.getElementById('explanation-container').classList.add('d-none');
     document.getElementById('exit-icon').classList.remove('d-none');
+}
+
+function turnSoundOff() {
+    muteAudio = true;
+    if (muteAudio) {
+        this.soundtrack.muted = true;
+        document.getElementById('speaker-muted').classList.remove('d-none');
+        document.getElementById('speaker-icon').classList.add('d-none');
+    }
+}
+
+function turnSoundOn() {
+    muteAudio = false;
+    if (!muteAudio) {
+        this.soundtrack.muted = false;
+        document.getElementById('speaker-muted').classList.add('d-none');
+        document.getElementById('speaker-icon').classList.remove('d-none');
+    }
 }
 
 function exitGame() {
