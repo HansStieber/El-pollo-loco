@@ -7,7 +7,7 @@ function init() {
     world = new World(canvas, keyboard);
 
     hideStartscreen();
-    mobileBtn();
+    setMobileBtns();
 }
 
 function hideStartscreen() {
@@ -59,14 +59,14 @@ window.addEventListener('keyup', (e) => {
 
 /*----------Control buttons for Smartphones----------*/
 
-function mobileBtn() {
-    touchBtnRight();
-    touchBtnLeft();
-    touchBtnJump();
-    touchBtnThrow();
+function setMobileBtns() {
+    setBtnRight();
+    setBtnLeft();
+    setBtnJump();
+    setBtnThrow();
 }
 
-function touchBtnRight() {
+function setBtnRight() {
     document.getElementById('move-right').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
@@ -77,7 +77,7 @@ function touchBtnRight() {
     });
 }
 
-function touchBtnLeft() {
+function setBtnLeft() {
     document.getElementById('move-left').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
@@ -88,7 +88,7 @@ function touchBtnLeft() {
     });
 }
 
-function touchBtnJump() {
+function setBtnJump() {
     document.getElementById('jump').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.SPACE = true;
@@ -99,7 +99,7 @@ function touchBtnJump() {
     });
 }
 
-function touchBtnThrow() {
+function setBtnThrow() {
     document.getElementById('throw').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.D = true;

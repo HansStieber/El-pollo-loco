@@ -6,14 +6,27 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.width = 80;
         this.height = 80;
-        this.throw();
+
+        if (keyboard.LEFT == true) {
+            this.throwLeft();
+        } else {
+            this.throwRight();
+        }
     }
 
-    throw() {
+    throwRight() {
         this.speedY = 25;
         this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+                this.x += 10;
+        }, 25);
+    }
+
+    throwLeft() {
+        this.speedY = 25;
+        this.applyGravity();
+        setInterval(() => {
+                this.x -= 10;
         }, 25);
     }
 }
