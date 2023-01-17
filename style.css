@@ -68,7 +68,33 @@ h1 {
 }
 
 .play-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
+    cursor: pointer;
+}
+
+.speaker-icon {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+}
+
+.speaker-icon:hover {
+    transform: scale(1.025);
+    cursor: pointer;
+}
+
+.exit-icon {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+}
+
+.exit-icon:hover {
+    transform: scale(1.025);
     cursor: pointer;
 }
 

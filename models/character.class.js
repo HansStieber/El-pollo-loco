@@ -56,6 +56,9 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-56.png'
     ];
     world;
+    walking_sound = new Audio('audio/steps.mp3');
+    jumping_sound = new Audio('audio/jump.mp3');
+    hurting_sound = new Audio('audio/hurt.mp3');
     speed = 10;
 
     constructor() {
@@ -76,18 +79,26 @@ class Character extends MovableObject {
 
     intervalFunction() {
         setInterval(() => {
+            this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
+                if (!this.isAboveGround()) {
+                    this.walking_sound.play();
+                }
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
+                if (!this.isAboveGround()) {
+                    this.walking_sound.play();
+                }
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jumping_sound.play()
             }
 
             this.world.camera_x = -this.x + 100;
@@ -127,6 +138,7 @@ class Character extends MovableObject {
             setInterval(() => {
                 if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
+                    this.hurting_sound.play();
                 }
             }, 200);
         }
