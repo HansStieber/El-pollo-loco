@@ -97,7 +97,10 @@ h1 {
     margin: 0 auto;
     width: 100px;
     transition: all 125ms ease-in-out;
-    filter: invert(1);
+    filter: invert(1);    
+    background-color: #002bff;
+    border-radius: 63px;
+    padding: 0 3px;
 }
 
 .play-button:hover {
@@ -147,6 +150,10 @@ h1 {
     border: 5px solid gold;
     border-radius: 5px;
 }
+
+.fullscreen-btn:hover {
+    transform: scale(1.025);
+    cursor: pointer;}
 
 .exit-icon {
     z-index: 1;

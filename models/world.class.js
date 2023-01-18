@@ -10,6 +10,7 @@ class World {
     statusBarCoins = new StatusbarCoins();
     statusBarEndboss = new StatusbarEndboss();
     throwableObjects = [];
+    totalCoins = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -61,10 +62,27 @@ class World {
     }
 
     checkCollisions() {
+        this.checkCollisionEnemy();
+        this.checkCollisionCoin();
+    }
+
+    checkCollisionEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollisionCoin() {
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                
+                this.totalCoins++;
+                this.level.coins.splice(index, 1);
+                this.statusBarCoins.setCoins(this.totalCoins);
+                console.log(this.totalCoins)
             }
         });
     }
