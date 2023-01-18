@@ -168,6 +168,7 @@ canvas {
     background-color: black;
     display: block;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    max-height: 100vh;
 }
 
 .turn-display-container {
@@ -179,10 +180,6 @@ canvas {
 @media only screen and (max-width: 992px) {
     .control-panel-action, .control-panel-move {
         display: unset;
-    }
-
-    .fullscreen-btn {
-        display: none;
     }
 }
 
@@ -199,6 +196,10 @@ canvas {
     .play-button {
         top: 5px;
         width: 80px;
+    }
+
+    .fullscreen-btn {
+        display: none;
     }
 }
 
