@@ -2,7 +2,6 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let muteAudio = false;
-let fullscreenMode = false;
 soundtrack = new Audio('audio/soundtrack.mp3');
 soundtrack.volume = 0.3
 soundtrack.loop = true;
@@ -48,10 +47,10 @@ function exitGame() {
 }
 
 function fullscreen() {
-    fullscreenMode = true;
     let fullscreen = document.getElementById('fullscreen');
     enterFullscreen(fullscreen);
     showCanvasInFull();
+    removeBtns();
 }
 
 function enterFullscreen(element) {
@@ -65,20 +64,33 @@ function enterFullscreen(element) {
 function showCanvasInFull() {
     let fullscreenCont = document.getElementById('canvas');
     fullscreenCont.style.width = '100%';
-  }
+}
 
-/*window.addEventListener('keydown', (e) => {
+function removeBtns() {
+        document.getElementById('exit-icon').classList.add('d-none');
+        document.getElementById('speaker-icon').classList.add('d-none');
+        document.getElementById('speaker-muted').classList.add('d-none');
+        document.getElementById('fullscreen-btn').classList.add('d-none');
+}
+
+document.addEventListener('keydown', (e) => {
     if (e.keyCode == 27) {
-        fullscreenMode = !fullscreenMode;
+        showBtns();
     }
-});*/
-
-window.addEventListener('webkitfullscreenchange', (e) => {
-    fullscreenMode = !fullscreenMode;
 });
 
+function showBtns() {
+        document.getElementById('exit-icon').classList.remove('d-none');
+        document.getElementById('speaker-icon').classList.remove('d-none');
+        document.getElementById('speaker-muted').classList.remove('d-none');
+        document.getElementById('fullscreen-btn').classList.remove('d-none');
+}
+
+/*window.addEventListener('webkitfullscreenchange', (e) => {
+    fullscreenMode = !fullscreenMode;
+});*/
+
 window.addEventListener('keydown', (e) => {
-    console.log(fullscreenMode);
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
