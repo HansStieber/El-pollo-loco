@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let muteAudio = false;
+let fullscreenMode = false;
 soundtrack = new Audio('audio/soundtrack.mp3');
 soundtrack.volume = 0.3
 soundtrack.loop = true;
@@ -21,6 +22,7 @@ function hideStartscreen() {
     document.getElementById('play-button').classList.add('d-none');
     document.getElementById('explanation-container').classList.add('d-none');
     document.getElementById('exit-icon').classList.remove('d-none');
+    document.getElementById('fullscreen-btn').classList.remove('d-none');
 }
 
 function turnSoundOff() {
@@ -45,7 +47,38 @@ function exitGame() {
     window.location.reload();
 }
 
+function fullscreen() {
+    fullscreenMode = true;
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen);
+    showCanvasInFull();
+}
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+function showCanvasInFull() {
+    let fullscreenCont = document.getElementById('canvas');
+    fullscreenCont.style.width = '100%';
+  }
+
+/*window.addEventListener('keydown', (e) => {
+    if (e.keyCode == 27) {
+        fullscreenMode = !fullscreenMode;
+    }
+});*/
+
+window.addEventListener('webkitfullscreenchange', (e) => {
+    fullscreenMode = !fullscreenMode;
+});
+
 window.addEventListener('keydown', (e) => {
+    console.log(fullscreenMode);
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }

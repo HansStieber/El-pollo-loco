@@ -30,6 +30,9 @@ h1 {
 
 .screen {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .explanation-container {
@@ -134,6 +137,17 @@ h1 {
     cursor: pointer;
 }
 
+.fullscreen-btn {
+    z-index: 1;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 20px;
+    background-color: gold;
+    border: 5px solid gold;
+    border-radius: 5px;
+}
+
 .exit-icon {
     z-index: 1;
     position: absolute;
@@ -165,6 +179,10 @@ canvas {
 @media only screen and (max-width: 992px) {
     .control-panel-action, .control-panel-move {
         display: unset;
+    }
+
+    .fullscreen-btn {
+        display: none;
     }
 }
 
