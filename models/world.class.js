@@ -9,6 +9,8 @@ class World {
     statusBarBottles = new StatusbarBottles();
     statusBarCoins = new StatusbarCoins();
     statusBarEndboss = new StatusbarEndboss();
+    endboss = new Endboss();
+    energyEndboss = 100;
     throwableObjects = [];
     totalCoins = 0;
     totalBottles = 0;
@@ -43,6 +45,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.endboss);
         this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
 
@@ -58,13 +61,21 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+        }, 50);
+        setInterval(() => {
+            this.checkCollisionsThrownBottles()
+        }, 400);
+        setInterval(() => {
             this.checkThrowObjects();
-        }, 200);
+        }, 100);
     }
 
     checkCollisions() {
+        this.checkJumpOnEnemies();
         this.checkCollisionEnemy();
+        this.checkCollisionEndboss();
         this.checkCollisionCoin();
+        this.checkCollisionBottle();
         this.checkCollisionBottle();
     }
 
@@ -75,6 +86,13 @@ class World {
                 this.statusBarHealth.setPercentage(this.character.energy);
             }
         });
+    }
+
+    checkCollisionEndboss() {
+        if (this.character.isColliding(this.endboss)) {
+            this.character.hit();
+            this.statusBarHealth.setPercentage(this.character.energy);
+        }
     }
 
     checkCollisionCoin() {
@@ -104,6 +122,32 @@ class World {
             this.totalBottles--;
             this.statusBarBottles.setBottles(this.totalBottles);
         }
+    }
+
+    checkJumpOnEnemies() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) &&
+                this.character.isAboveGround() &&
+                this.character.speedY < 0) {
+                this.character.killEnemie(index);
+            }
+        });
+    }
+
+    checkCollisionsThrownBottles() {
+        this.throwableObjects.forEach((bottle) => {
+            if (this.endboss.isColliding(bottle)) {
+                this.energyEndboss -= 20;
+                this.endboss.speed += 0.3;
+                this.statusBarEndboss.setPercentage(this.energyEndboss);
+                console.log(this.energyEndboss);
+                if (this.energyEndboss == 0) {
+                    this.energyEndboss = 0;
+                    this.endboss.speed = 0;
+                }
+
+            }
+        });
     }
 
     addObjectsToMap(objects) {

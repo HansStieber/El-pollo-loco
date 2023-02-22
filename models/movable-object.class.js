@@ -73,4 +73,8 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 25;
     }
+
+    killEnemie(index) {
+        this.world.level.enemies.splice(index, 1);
+    }
 }

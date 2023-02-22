@@ -145,25 +145,21 @@ class Character extends MovableObject {
     }
 
     animationHurt() {
-        {
-            setInterval(() => {
-                if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    if (!muteAudio) {
-                        this.hurting_sound.play();
-                    }
+        setInterval(() => {
+            if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+                if (!muteAudio) {
+                    this.hurting_sound.play();
                 }
-            }, 200);
-        }
+            }
+        }, 200);
     }
 
     animationDead() {
-        {
-            setInterval(() => {
-                if (this.isDead()) {
-                    this.playAnimation(this.IMAGES_DEAD);
-                }
-            }, 100);
-        }
+        setInterval(() => {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+        }, 100);
     }
 }
