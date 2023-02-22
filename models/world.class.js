@@ -11,6 +11,7 @@ class World {
     statusBarEndboss = new StatusbarEndboss();
     throwableObjects = [];
     totalCoins = 0;
+    totalBottles = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -64,6 +65,7 @@ class World {
     checkCollisions() {
         this.checkCollisionEnemy();
         this.checkCollisionCoin();
+        this.checkCollisionBottle();
     }
 
     checkCollisionEnemy() {
@@ -78,11 +80,19 @@ class World {
     checkCollisionCoin() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
-                
                 this.totalCoins++;
                 this.level.coins.splice(index, 1);
                 this.statusBarCoins.setCoins(this.totalCoins);
-                console.log(this.totalCoins)
+            }
+        });
+    }
+
+    checkCollisionBottle() {
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                this.totalBottles++;
+                this.level.bottles.splice(index, 1);
+                this.statusBarBottles.setBottles(this.totalBottles);
             }
         });
     }
