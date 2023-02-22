@@ -140,12 +140,10 @@ class World {
                 this.energyEndboss -= 20;
                 this.endboss.speed += 0.3;
                 this.statusBarEndboss.setPercentage(this.energyEndboss);
-                console.log(this.energyEndboss);
-                if (this.energyEndboss == 0) {
+                if (this.energyEndboss <= 0) {
                     this.energyEndboss = 0;
                     this.endboss.speed = 0;
                 }
-
             }
         });
     }
