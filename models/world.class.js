@@ -81,7 +81,7 @@ class World {
 
     checkCollisionEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && enemy.speed !== 0) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
             }
@@ -138,7 +138,7 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
                 this.energyEndboss -= 20;
-                this.endboss.speed += 0.3;
+                this.endboss.speed += 0.6;
                 this.statusBarEndboss.setPercentage(this.energyEndboss);
                 if (this.energyEndboss <= 0) {
                     this.energyEndboss = 0;
