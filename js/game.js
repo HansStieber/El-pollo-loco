@@ -7,6 +7,7 @@ soundtrack.volume = 0.3
 soundtrack.loop = true;
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 

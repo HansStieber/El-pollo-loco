@@ -25,23 +25,25 @@ class ThrowableObject extends MovableObject {
         }
 
         setInterval(() => {
-                this.playAnimation(this.IMAGES_ROTATION);
+            this.playAnimation(this.IMAGES_ROTATION);
         }, 50);
     }
 
     throwRight() {
-        this.speedY = 20;
-        this.applyGravity();
-        setInterval(() => {
+        if (this.y > 200) {
+            this.speedY = 20;
+            this.applyGravity();
+            setInterval(() => {
                 this.x += 10;
-        }, 25);
+            }, 25);
+        }
     }
 
     throwLeft() {
-        this.speedY = 25;
+        this.speedY = 20;
         this.applyGravity();
         setInterval(() => {
-                this.x -= 10;
+            this.x -= 10;
         }, 25);
     }
 }

@@ -14,6 +14,10 @@ class World {
     throwableObjects = [];
     totalCoins = 0;
     totalBottles = 0;
+    coin_sound = new Audio('audio/coin.mp3');
+    bottle_sound = new Audio('audio/bottle.mp3');
+    chicken_sound = new Audio('audio/chicken.mp3');
+    endboss_sound = new Audio('audio/endboss.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -98,6 +102,9 @@ class World {
     checkCollisionCoin() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
+                if (!muteAudio) {
+                    this.coin_sound.play();
+                }
                 this.totalCoins++;
                 this.level.coins.splice(index, 1);
                 this.statusBarCoins.setCoins(this.totalCoins);
@@ -108,6 +115,9 @@ class World {
     checkCollisionBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
+                if (!muteAudio) {
+                    this.bottle_sound.play();
+                }
                 this.totalBottles++;
                 this.level.bottles.splice(index, 1);
                 this.statusBarBottles.setBottles(this.totalBottles);
@@ -129,6 +139,9 @@ class World {
             if (this.character.isColliding(enemy) &&
                 this.character.isAboveGround() &&
                 this.character.speedY < 0) {
+                if (!muteAudio) {
+                    this.chicken_sound.play();
+                }
                 this.character.killEnemie(index);
             }
         });
@@ -137,6 +150,9 @@ class World {
     checkCollisionsThrownBottles() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
+                if (!muteAudio) {
+                    this.endboss_sound.play();
+                }
                 this.energyEndboss -= 20;
                 this.endboss.speed += 0.6;
                 this.statusBarEndboss.setPercentage(this.energyEndboss);
