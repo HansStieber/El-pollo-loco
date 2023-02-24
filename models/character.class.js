@@ -166,7 +166,9 @@ class Character extends MovableObject {
                     this.dead_sound.volume = 0.3;
                     this.dead_sound.play();
                 }
-                this.showLostScreen();
+                setTimeout(() => {
+                    this.showLostScreen();
+                    }, 250);
             }
         }, 100);
     }

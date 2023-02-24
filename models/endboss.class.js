@@ -82,9 +82,9 @@ class Endboss extends MovableObject {
                             this.success.volume = 0.4;
                             this.success.play();
                         }
-                        //setTimeout(() => {
+                        setTimeout(() => {
                         this.showGameOverScreen();
-                        //}, 1000);
+                        }, 500);
                     }
                 }
             }
