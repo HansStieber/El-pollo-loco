@@ -1,5 +1,6 @@
 class World {
     canvas;
+    paused = false;
     keyboard;
     character = new Character();
     level = level1;
@@ -18,11 +19,6 @@ class World {
     bottle_sound = new Audio('audio/bottle.mp3');
     chicken_sound = new Audio('audio/chicken.mp3');
     endboss_sound = new Audio('audio/endboss.mp3');
-    IMAGES_EB_HURT = [
-        'img/4_enemie_boss_chicken/4_hurt/G21.png',
-        'img/4_enemie_boss_chicken/4_hurt/G22.png',
-        'img/4_enemie_boss_chicken/4_hurt/G23.png'
-    ];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,33 +34,35 @@ class World {
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (this.paused == false) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
+            this.ctx.translate(this.camera_x, 0);
+            this.addObjectsToMap(this.level.backgroundObjects);
+            this.addObjectsToMap(this.level.clouds);
 
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBarHealth);
-        this.addToMap(this.statusBarBottles);
-        this.addToMap(this.statusBarCoins);
-        this.addToMap(this.statusBarEndboss);
-        this.ctx.translate(this.camera_x, 0);
+            this.ctx.translate(-this.camera_x, 0);
+            this.addToMap(this.statusBarHealth);
+            this.addToMap(this.statusBarBottles);
+            this.addToMap(this.statusBarCoins);
+            this.addToMap(this.statusBarEndboss);
+            this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.endboss);
-        this.addObjectsToMap(this.throwableObjects);
-        this.addToMap(this.character);
+            this.addObjectsToMap(this.level.bottles);
+            this.addObjectsToMap(this.level.coins);
+            this.addObjectsToMap(this.level.enemies);
+            this.addToMap(this.endboss);
+            this.addObjectsToMap(this.throwableObjects);
+            this.addToMap(this.character);
 
-        this.ctx.translate(-this.camera_x, 0);
+            this.ctx.translate(-this.camera_x, 0);
 
-        //Draw wird immer wieder aufgerufen
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+            //Draw wird immer wieder aufgerufen
+            let self = this;
+            requestAnimationFrame(function () {
+                self.draw();
+            });
+        }
     }
 
     run() {
@@ -77,12 +75,14 @@ class World {
         setInterval(() => {
             this.checkThrowObjects();
         }, 100);
+        setInterval(() => {
+        this.checkCollisionEnemy();
+        this.checkCollisionEndboss();
+        }, 200);
     }
 
     checkCollisions() {
         this.checkJumpOnEnemies();
-        this.checkCollisionEnemy();
-        this.checkCollisionEndboss();
         this.checkCollisionCoin();
         this.checkCollisionBottle();
         this.checkCollisionBottle();

@@ -76,9 +76,22 @@ class Endboss extends MovableObject {
                     }
                     if (world.energyEndboss == 0) {
                         this.playAnimation(this.IMAGES_EB_DEAD);
+                        this.showGameOverScreen();
+                        world.paused = true;
                     }
                 }
             }
         }, 200);
+    }
+
+    showGameOverScreen() {
+        document.getElementById('game-over').classList.remove('d-none');
+        document.getElementById('exit-icon').classList.add('d-none');
+        document.getElementById('fullscreen-btn').classList.add('d-none');
+        document.getElementById('play-button').classList.remove('d-none');
+        muteAudio = true;
+        //document.getElementById('canvas').classList.add('d-none');
+        //document.getElementById('btn-container-restart').classList.remove('d-none');
+        //document.getElementById('restartbtn').classList.remove('d-none');
     }
 }

@@ -60,6 +60,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/steps.mp3');
     jumping_sound = new Audio('audio/jump.mp3');
     hurting_sound = new Audio('audio/hurt.mp3');
+    dead_sound = new Audio('audio/dead.mp3');
 
     speed = 10;
     offset = {
@@ -159,7 +160,24 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                if (!muteAudio) {
+                    this.dead_sound.loop = false;
+                    this.dead_sound.play();
+                }
+                this.showLostScreen();
             }
         }, 100);
+    }
+
+    showLostScreen() {
+        document.getElementById('endscreen').classList.remove('d-none');
+        document.getElementById('exit-icon').classList.add('d-none');
+        document.getElementById('fullscreen-btn').classList.add('d-none');
+        document.getElementById('play-button').classList.remove('d-none');
+        muteAudio = true;
+        this.world.paused = true;
+        //document.getElementById('canvas').classList.add('d-none');
+        //document.getElementById('btn-container-restart').classList.remove('d-none');
+        //document.getElementById('restartbtn').classList.remove('d-none');
     }
 }

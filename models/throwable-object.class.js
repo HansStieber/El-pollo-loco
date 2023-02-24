@@ -38,7 +38,6 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.IMAGES_ROTATION);} else {
                 this.playAnimation(this.IMAGES_SPLASH);
             }
-            console.log(this.y);
         }, 50);
 
         setStoppableInterval(() => {
