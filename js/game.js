@@ -1,3 +1,4 @@
+let intervalIds = [];
 let canvas;
 let world;
 let keyboard = new Keyboard();
@@ -15,6 +16,11 @@ function init() {
 
     hideStartscreen();
     setMobileBtns();
+}
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
 }
 
 function hideStartscreen() {

@@ -18,6 +18,11 @@ class World {
     bottle_sound = new Audio('audio/bottle.mp3');
     chicken_sound = new Audio('audio/chicken.mp3');
     endboss_sound = new Audio('audio/endboss.mp3');
+    IMAGES_EB_HURT = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -148,7 +153,7 @@ class World {
     }
 
     checkCollisionsThrownBottles() {
-        this.throwableObjects.forEach((bottle) => {
+        this.throwableObjects.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
                 if (!muteAudio) {
                     this.endboss_sound.play();
@@ -160,6 +165,9 @@ class World {
                     this.energyEndboss = 0;
                     this.endboss.speed = 0;
                 }
+                setTimeout(() => {
+                    this.throwableObjects.splice(index, 1);
+                }, 200);
             }
         });
     }
