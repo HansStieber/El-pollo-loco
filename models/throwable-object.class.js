@@ -34,7 +34,11 @@ class ThrowableObject extends MovableObject {
         }
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ROTATION);
+            if(this.y < 350) {
+            this.playAnimation(this.IMAGES_ROTATION);} else {
+                this.playAnimation(this.IMAGES_SPLASH);
+            }
+            console.log(this.y);
         }, 50);
 
         setStoppableInterval(() => {
@@ -43,7 +47,7 @@ class ThrowableObject extends MovableObject {
                     this.playAnimation(this.IMAGES_SPLASH);
                 }
             });
-        }, 50);
+        }, 10);
     }
 
     throwRight() {

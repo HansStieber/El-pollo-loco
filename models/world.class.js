@@ -167,7 +167,7 @@ class World {
                 }
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1);
-                }, 200);
+                }, 50);
             }
         });
     }
