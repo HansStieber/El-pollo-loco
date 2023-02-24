@@ -108,6 +108,7 @@ class World {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
                 if (!muteAudio) {
+                    this.coin_sound.volume = 0.3;
                     this.coin_sound.play();
                 }
                 this.totalCoins++;
@@ -145,6 +146,7 @@ class World {
                 this.character.isAboveGround() &&
                 this.character.speedY < 0) {
                 if (!muteAudio) {
+                    this.chicken_sound.volume = 0.3;
                     this.chicken_sound.play();
                 }
                 this.character.killEnemie(index);
@@ -156,6 +158,7 @@ class World {
         this.throwableObjects.forEach((bottle, index) => {
             if (this.endboss.isColliding(bottle)) {
                 if (!muteAudio) {
+                    this.endboss_sound.volume = 0.3;
                     this.endboss_sound.play();
                 }
                 this.energyEndboss -= 20;

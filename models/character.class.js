@@ -148,6 +148,7 @@ class Character extends MovableObject {
     animationHurt() {
         setInterval(() => {
             if (this.isHurt()) {
+                console.log(this.energy)
                 this.playAnimation(this.IMAGES_HURT);
                 if (!muteAudio) {
                     this.hurting_sound.play();
@@ -162,6 +163,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 if (!muteAudio) {
                     this.dead_sound.loop = false;
+                    this.dead_sound.volume = 0.3;
                     this.dead_sound.play();
                 }
                 this.showLostScreen();
@@ -173,11 +175,8 @@ class Character extends MovableObject {
         document.getElementById('endscreen').classList.remove('d-none');
         document.getElementById('exit-icon').classList.add('d-none');
         document.getElementById('fullscreen-btn').classList.add('d-none');
-        document.getElementById('play-button').classList.remove('d-none');
+        document.getElementById('back-button').classList.remove('d-none');
         muteAudio = true;
         this.world.paused = true;
-        //document.getElementById('canvas').classList.add('d-none');
-        //document.getElementById('btn-container-restart').classList.remove('d-none');
-        //document.getElementById('restartbtn').classList.remove('d-none');
     }
 }

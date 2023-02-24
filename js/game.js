@@ -2,9 +2,9 @@ let intervalIds = [];
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let muteAudio = false;
+let muteAudio;
 soundtrack = new Audio('audio/soundtrack.mp3');
-soundtrack.volume = 0.3
+soundtrack.volume = 0.2
 soundtrack.loop = true;
 
 function init() {
@@ -12,9 +12,11 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
-    this.soundtrack.play();
+    soundtrack.play();
+    muteAudio = false;
 
     hideStartscreen();
+    
     setMobileBtns();
 }
 
@@ -26,7 +28,6 @@ function setStoppableInterval(fn, time) {
 function hideStartscreen() {
     document.getElementById('startscreen').classList.add('d-none');
     document.getElementById('play-button').classList.add('d-none');
-    document.getElementById('explanation-container').classList.add('d-none');
     document.getElementById('exit-icon').classList.remove('d-none');
     document.getElementById('fullscreen-btn').classList.remove('d-none');
 }
