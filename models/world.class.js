@@ -15,6 +15,7 @@ class World {
     throwableObjects = [];
     totalCoins = 0;
     totalBottles = 0;
+    lastThrow = 2;
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
     chicken_sound = new Audio('audio/chicken.mp3');
@@ -151,11 +152,14 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.totalBottles > 0) {
+        let timepassed = new Date().getTime() - this.lastThrow; //Difference in ms
+        timepassed = timepassed / 1000; //in s
+        if (this.keyboard.D && this.totalBottles > 0 && timepassed > 1) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.totalBottles--;
             this.statusBarBottles.setBottles(this.totalBottles);
+            this.lastThrow = new Date().getTime();
         }
     }
 
@@ -227,7 +231,7 @@ class World {
         mo.x = mo.x * -1;
     }
 
-    
+
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
