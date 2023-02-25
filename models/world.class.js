@@ -161,6 +161,7 @@ class World {
                     this.endboss_sound.volume = 0.3;
                     this.endboss_sound.play();
                 }
+                this.endboss
                 this.energyEndboss -= 20;
                 this.endboss.speed += 0.6;
                 this.statusBarEndboss.setPercentage(this.energyEndboss);
@@ -170,7 +171,7 @@ class World {
                 }
                 setTimeout(() => {
                     this.throwableObjects.splice(index, 1);
-                }, 50);
+                }, 150);
             }
         });
     }

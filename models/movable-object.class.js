@@ -77,6 +77,5 @@ class MovableObject extends DrawableObject {
     killEnemie(index) {
         this.world.level.enemies[index].alive = false;
         this.world.level.enemies[index].speed = 0;
-        //this.world.level.enemies.splice(index, 1);
     }
 }

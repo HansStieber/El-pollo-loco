@@ -52,6 +52,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_EB_DEAD);
+        this.loadImages(this.IMAGES_EB_HURT);
 
         this.x = 2400;
 
@@ -64,6 +65,14 @@ class Endboss extends MovableObject {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
+
+        setStoppableInterval(() => {
+            world.throwableObjects.forEach((bottle) => {
+                if (this.isColliding(bottle)) {
+                    this.playAnimation(this.IMAGES_EB_HURT);
+                }
+            });
+        }, 50);
 
         setInterval(() => {
             if (world.energyEndboss > 80) {
@@ -83,11 +92,13 @@ class Endboss extends MovableObject {
                             this.success.play();
                         }
                         setTimeout(() => {
-                        this.showGameOverScreen();
+                            this.showGameOverScreen();
                         }, 500);
                     }
                 }
+
             }
+
         }, 200);
     }
 

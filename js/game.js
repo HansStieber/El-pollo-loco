@@ -31,6 +31,7 @@ function hideStartscreen() {
     document.getElementById('exit-icon').classList.remove('d-none');
     document.getElementById('fullscreen-btn').classList.remove('d-none');
     document.getElementById('explanation-container').classList.add('d-none');
+    document.getElementById('speaker-icon').classList.remove('d-none');
 }
 
 function turnSoundOff() {
@@ -40,6 +41,7 @@ function turnSoundOff() {
         document.getElementById('speaker-muted').classList.remove('d-none');
         document.getElementById('speaker-icon').classList.add('d-none');
     }
+    console.log(muteAudio)
 }
 
 function turnSoundOn() {
@@ -49,6 +51,7 @@ function turnSoundOn() {
         document.getElementById('speaker-muted').classList.add('d-none');
         document.getElementById('speaker-icon').classList.remove('d-none');
     }
+    console.log(muteAudio)
 }
 
 function exitGame() {

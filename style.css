@@ -1,5 +1,5 @@
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -104,6 +104,32 @@ h1 {
 }
 
 .play-button:hover {
+    transform: scale(1.025);
+    cursor: pointer;
+}
+
+.back-button {
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    display: flex;
+    color: beige;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    font-size: 35px;
+    height: 47px;
+    transition: all 125ms ease-in-out;
+    filter: invert(1);
+    background-color: #002bff;
+    border-radius: 63px;
+    padding: 5px;
+}
+
+.back-button:hover {
     transform: scale(1.025);
     cursor: pointer;
 }
