@@ -30,6 +30,7 @@ function hideStartscreen() {
     document.getElementById('play-button').classList.add('d-none');
     document.getElementById('exit-icon').classList.remove('d-none');
     document.getElementById('fullscreen-btn').classList.remove('d-none');
+    document.getElementById('explanation-container').classList.add('d-none');
 }
 
 function turnSoundOff() {
