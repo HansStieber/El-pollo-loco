@@ -20,11 +20,13 @@ class StatusbarBottles extends DrawableObject {
         this.setBottles(0);
     }
 
+
     setBottles(bottles) {
         this.bottles = bottles;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
+    
 
     resolveImageIndex() {
         if (this.bottles >= 9) {

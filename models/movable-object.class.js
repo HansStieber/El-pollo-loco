@@ -12,6 +12,7 @@ class MovableObject extends DrawableObject {
         bottom: 0,
       };
 
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -21,6 +22,7 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+
     isAboveGround() {
         if (this instanceof ThrowableObject) { //throwable Object should always fall
             return true;
@@ -29,12 +31,14 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     isColliding(obj) {
         return this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
             this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
             this.y + this.offset.top < obj.y + obj.height- obj.offset.bottom;
     }
+
 
     hit() {
         this.energy -= 5;
@@ -45,15 +49,18 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
         timepassed = timepassed / 1000; //in s
         return timepassed < 0.5;
     }
 
+
     isDead() {
         return this.energy == 0;
     }
+
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -62,17 +69,21 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
+
     moveRight() {
         this.x += this.speed;
     }
+
 
     moveLeft() {
         this.x -= this.speed;
     }
 
+
     jump() {
         this.speedY = 25;
     }
+    
 
     killEnemie(index) {
         this.world.level.enemies[index].alive = false;

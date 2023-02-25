@@ -61,11 +61,22 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    
     animate() {
+        this.endbossMoveLeft();
+        this.endbossIsHurt();
+        this.endbossMoveAnimations();
+    }
+
+
+    endbossMoveLeft() {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
+    }
 
+
+    endbossIsHurt() {
         setStoppableInterval(() => {
             world.throwableObjects.forEach((bottle) => {
                 if (this.isColliding(bottle)) {
@@ -73,7 +84,10 @@ class Endboss extends MovableObject {
                 }
             });
         }, 50);
+    }
 
+
+    endbossMoveAnimations() {
         setInterval(() => {
             if (world.energyEndboss > 80) {
                 this.playAnimation(this.IMAGES_WALKING);
@@ -96,11 +110,10 @@ class Endboss extends MovableObject {
                         }, 500);
                     }
                 }
-
             }
-
         }, 200);
     }
+
 
     showGameOverScreen() {
         document.getElementById('game-over').classList.remove('d-none');

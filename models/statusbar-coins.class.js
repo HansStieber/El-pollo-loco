@@ -17,12 +17,14 @@ class StatusbarCoins extends DrawableObject {
         this.height = 50;
         this.setCoins(0);
     }
+    
 
     setCoins(coins) {
         this.coins = coins;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
+
 
     resolveImageIndex() {
         if (this.coins == 5) {

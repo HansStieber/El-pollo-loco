@@ -23,6 +23,7 @@ class SmallChicken extends MovableObject {
         this.animate();
     }
 
+    
     animate() {
         setInterval(() => {
         this.moveLeft();

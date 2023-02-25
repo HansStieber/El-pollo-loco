@@ -61,7 +61,6 @@ class Character extends MovableObject {
     jumping_sound = new Audio('audio/jump.mp3');
     hurting_sound = new Audio('audio/hurt.mp3');
     dead_sound = new Audio('audio/dead.mp3');
-
     speed = 10;
     offset = {
         top: 100,
@@ -81,41 +80,56 @@ class Character extends MovableObject {
         this.animate();
     }
 
+
     animate() {
         this.intervalFunction();
         this.intervalAnimations();
     }
 
+
     intervalFunction() {
         setInterval(() => {
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                if (!this.isAboveGround() && !muteAudio) {
-                    this.walking_sound.play();
-                    this.walking_sound.playbackRate = 1.5;
-                }
-            }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                if (!this.isAboveGround() && !muteAudio) {
-                    this.walking_sound.play();
-                }
-            }
-
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-                if (!muteAudio) {
-                    this.jumping_sound.play()
-                }
-            }
-
+            this.playWalkingSoundWhenMovingLeft();
+            this.playWalkingSoundWhenMovingRight();
+            this.playJumpingSound();
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
     }
+
+
+    playWalkingSoundWhenMovingLeft() {
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+            if (!this.isAboveGround() && !muteAudio) {
+                this.walking_sound.play();
+                this.walking_sound.playbackRate = 1.5;
+            }
+        }
+    }
+
+
+    playWalkingSoundWhenMovingRight() {
+        if (this.world.keyboard.LEFT && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
+            if (!this.isAboveGround() && !muteAudio) {
+                this.walking_sound.play();
+            }
+        }
+    }
+
+
+    playJumpingSound() {
+        if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+            this.jump();
+            if (!muteAudio) {
+                this.jumping_sound.play()
+            }
+        }
+    }
+
 
     intervalAnimations() {
         this.animationLeftRight();
@@ -123,6 +137,7 @@ class Character extends MovableObject {
         this.animationHurt();
         this.animationDead();
     }
+
 
     animationLeftRight() {
         setInterval(() => {
@@ -137,6 +152,7 @@ class Character extends MovableObject {
         }, 50);
     }
 
+
     animationJump() {
         setInterval(() => {
             if (this.isAboveGround()) {
@@ -144,6 +160,7 @@ class Character extends MovableObject {
             }
         }, 100);
     }
+
 
     animationHurt() {
         setInterval(() => {
@@ -156,6 +173,7 @@ class Character extends MovableObject {
             }
         }, 200);
     }
+
 
     animationDead() {
         setInterval(() => {
@@ -173,6 +191,7 @@ class Character extends MovableObject {
         }, 50);
     }
 
+    
     showLostScreen() {
         document.getElementById('endscreen').classList.remove('d-none');
         document.getElementById('exit-icon').classList.add('d-none');

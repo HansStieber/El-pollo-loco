@@ -25,6 +25,7 @@ class ThrowableObject extends MovableObject {
 
         this.animate();
     }
+    
 
     animate() {
         if (world.character.otherDirection) {
@@ -49,6 +50,7 @@ class ThrowableObject extends MovableObject {
         }, 10);
     }
 
+
     throwRight() {
         this.speedY = 20;
         this.applyGravity();
@@ -56,6 +58,7 @@ class ThrowableObject extends MovableObject {
             this.x += 10;
         }, 25);
     }
+
 
     throwLeft() {
         this.speedY = 20;
