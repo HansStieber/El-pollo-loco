@@ -42,7 +42,6 @@ function turnSoundOff() {
         document.getElementById('speaker-muted').classList.remove('d-none');
         document.getElementById('speaker-icon').classList.add('d-none');
     }
-    console.log(muteAudio)
 }
 
 
@@ -53,7 +52,6 @@ function turnSoundOn() {
         document.getElementById('speaker-muted').classList.add('d-none');
         document.getElementById('speaker-icon').classList.remove('d-none');
     }
-    console.log(muteAudio)
 }
 
 
