@@ -159,7 +159,7 @@ class Character extends MovableObject {
 
     animationDead() {
         setInterval(() => {
-            if (this.isDead()) {
+            if (this.isDead() || this.x > this.world.endboss.x) {
                 this.playAnimation(this.IMAGES_DEAD);
                 if (!muteAudio) {
                     this.dead_sound.loop = false;
@@ -170,7 +170,7 @@ class Character extends MovableObject {
                     this.showLostScreen();
                     }, 250);
             }
-        }, 100);
+        }, 50);
     }
 
     showLostScreen() {
