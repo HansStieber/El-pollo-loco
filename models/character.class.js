@@ -196,6 +196,7 @@ class Character extends MovableObject {
         document.getElementById('exit-icon').classList.add('d-none');
         document.getElementById('fullscreen-btn').classList.add('d-none');
         document.getElementById('back-button').classList.remove('d-none');
+        document.getElementById('endscreen-container').classList.remove('d-none');
         muteAudio = true;
         this.world.paused = true;
     }
