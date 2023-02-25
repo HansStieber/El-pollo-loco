@@ -197,7 +197,7 @@ class World {
 
     updateEnergyEndboss() {
         this.energyEndboss -= 20;
-        this.endboss.speed += 0.6;
+        this.endboss.speed += 1;
         this.statusBarEndboss.setPercentage(this.energyEndboss);
         if (this.energyEndboss <= 0) {
             this.energyEndboss = 0;
