@@ -54,7 +54,6 @@
                 <img id="throw" class="throw" src="img/9_intro_outro_screens/buttons/bottle.png">
             </div>
             <img id="play-button" class="play-button" onclick="init()" src="img/9_intro_outro_screens/buttons/play.png">
-            <div id="back-button" class="back-button d-none" onclick="exitGame()">Back to Menu</div>
             <img id="speaker-icon" class="speaker-icon d-none" onclick="turnSoundOff()"
                 src="img/9_intro_outro_screens/buttons/speaker.png">
             <img id="speaker-muted" class="speaker-muted d-none" onclick="turnSoundOn()"
@@ -66,9 +65,12 @@
             <img id="exit-icon" class="exit-icon d-none" onclick="exitGame()"
                 src="img/9_intro_outro_screens/buttons/x.png">
             <img id="startscreen" class="startscreen" src="img/9_intro_outro_screens/start/startscreen_2.png">
-            <img id="endscreen" class="startscreen d-none"
-                src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
-            <img id="game-over" class="startscreen d-none" src="img/9_intro_outro_screens/game_over/game over!.png">
+            <div class="endscreen-container">
+                <img id="endscreen" class="startscreen d-none"
+                    src="img/9_intro_outro_screens/game_over/oh no you lost!.png">
+                <img id="game-over" class="startscreen d-none" src="img/9_intro_outro_screens/game_over/game over!.png">
+                <div id="back-button" class="back-button d-none" onclick="exitGame()">Back to Menu</div>
+            </div>
             <canvas id="canvas" width="720" height="480">
             </canvas>
         </div>

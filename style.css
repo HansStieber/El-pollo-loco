@@ -108,6 +108,12 @@ h1 {
     cursor: pointer;
 }
 
+.endscreen-container {
+    aspect-ratio: auto 720 / 480;
+    width: 100%;
+    position: absolute;
+}
+
 .back-button {
     z-index: 1;
     position: absolute;

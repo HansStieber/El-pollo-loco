@@ -88,6 +88,12 @@ function showCanvasInFull() {
 function removeBtns() {
         document.getElementById('exit-icon').classList.add('d-none');
         document.getElementById('fullscreen-btn').classList.add('d-none');
+        if (muteAudio == false) {
+            document.getElementById('speaker-icon').classList.add('d-none');
+        }
+        if (muteAudio == true) {
+            document.getElementById('speaker-muted').classList.add('d-none');
+        }
         if (window.innerWidth < 992) {
             document.getElementById('close-fullscreen-btn').classList.remove('d-none');
         }
@@ -111,6 +117,12 @@ function showBtns() {
         document.getElementById('exit-icon').classList.remove('d-none');
         document.getElementById('fullscreen-btn').classList.remove('d-none');
         document.getElementById('close-fullscreen-btn').classList.add('d-none');
+        if (muteAudio == false) {
+            document.getElementById('speaker-icon').classList.remove('d-none');
+        }
+        if (muteAudio == true) {
+            document.getElementById('speaker-muted').classList.remove('d-none');
+        }
 }
 
 
