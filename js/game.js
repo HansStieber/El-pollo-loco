@@ -2,7 +2,9 @@ let intervalIds = [];
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let muteAudio;
+let muteAudio = false;
+let soundtrackMuted = false;
+let gameOver = false;
 soundtrack = new Audio('audio/soundtrack.mp3');
 soundtrack.volume = 0.2
 soundtrack.loop = true;
@@ -37,6 +39,7 @@ function hideStartscreen() {
 
 function turnSoundOff() {
     muteAudio = true;
+    soundtrackMuted = true;
     if (muteAudio) {
         this.soundtrack.muted = true;
         document.getElementById('speaker-muted').classList.remove('d-none');
@@ -47,6 +50,7 @@ function turnSoundOff() {
 
 function turnSoundOn() {
     muteAudio = false;
+    soundtrackMuted = false;
     if (!muteAudio) {
         this.soundtrack.muted = false;
         document.getElementById('speaker-muted').classList.add('d-none');
@@ -115,10 +119,10 @@ function showBtns() {
         document.getElementById('exit-icon').classList.remove('d-none');
         document.getElementById('fullscreen-btn').classList.remove('d-none');
         document.getElementById('close-fullscreen-btn').classList.add('d-none');
-        if (muteAudio == false) {
+        if (soundtrackMuted == false) {
             document.getElementById('speaker-icon').classList.remove('d-none');
         }
-        if (muteAudio == true) {
+        if (soundtrackMuted == true) {
             document.getElementById('speaker-muted').classList.remove('d-none');
         }
 }

@@ -100,8 +100,7 @@ class Endboss extends MovableObject {
                     }
                     if (world.energyEndboss == 0) {
                         this.playAnimation(this.IMAGES_EB_DEAD);
-                        if (!muteAudio) {
-                            this.success.loop = false;
+                        if (!muteAudio && !gameOver) {
                             this.success.volume = 0.4;
                             this.success.play();
                         }
@@ -112,7 +111,7 @@ class Endboss extends MovableObject {
                 }
             }
         }, 200);
-    }
+    } 
 
 
     showGameOverScreen() {
@@ -123,5 +122,6 @@ class Endboss extends MovableObject {
         document.getElementById('endscreen-container').classList.remove('d-none');
         muteAudio = true;
         world.paused = true;
+        gameOver = true;
     }
 }

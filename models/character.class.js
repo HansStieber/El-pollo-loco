@@ -178,26 +178,29 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead() || this.x > this.world.endboss.x) {
                 this.playAnimation(this.IMAGES_DEAD);
-                if (!muteAudio) {
+                if (!muteAudio && !gameOver) {
                     this.dead_sound.loop = false;
                     this.dead_sound.volume = 0.3;
                     this.dead_sound.play();
                 }
                 setTimeout(() => {
                     this.showLostScreen();
-                    }, 250);
+                }, 250);
             }
         }, 50);
     }
 
-    
+
     showLostScreen() {
-        document.getElementById('endscreen').classList.remove('d-none');
-        document.getElementById('exit-icon').classList.add('d-none');
-        document.getElementById('fullscreen-btn').classList.add('d-none');
-        document.getElementById('back-button').classList.remove('d-none');
-        document.getElementById('endscreen-container').classList.remove('d-none');
-        muteAudio = true;
-        this.world.paused = true;
+        if (document.getElementById('game-over').classList.contains('d-none')) {
+            document.getElementById('endscreen').classList.remove('d-none');
+            document.getElementById('exit-icon').classList.add('d-none');
+            document.getElementById('fullscreen-btn').classList.add('d-none');
+            document.getElementById('back-button').classList.remove('d-none');
+            document.getElementById('endscreen-container').classList.remove('d-none');
+            muteAudio = true;
+            this.world.paused = true;
+            gameOver = true;
+        }
     }
 }

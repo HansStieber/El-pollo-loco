@@ -117,7 +117,7 @@ h1 {
 .back-button {
     z-index: 1;
     position: absolute;
-    top: calc(50% - 300px);
+    top: calc(50% - 150px);
     right: 0;
     left: 0;
     margin: 0 auto;
